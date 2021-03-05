@@ -52,7 +52,7 @@ export const App= ()=>{
   }
   return (
     <div className="App">
-      <h1>Drawing Canvas</h1>
+      {/* <h1>Drawing Canvas</h1> */}
       <canvas style={{border:"1px solid #000000"}}
       onMouseDown={startDrawing}
       onMouseUp={finishDrawing}
