@@ -36,3 +36,69 @@
     transform: rotate(360deg);
   }
 }
+body{
+  margin:0;
+  padding:0;
+}
+#colorButtonBox{
+  position:absolute;
+  background:rgb(210,210,210);
+  padding:5px;
+  margin:5px;
+  border-radius:10px;
+  bottom:0;
+}
+#colorButton {
+  transition: .1s linear;
+  position: relative;
+  float:left;
+  margin:5px;
+  border-radius:50%;
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+}
+#eraserButton {
+  transition: .1s linear;
+  position: relative;
+  float:left;
+  margin:5px;
+  border-radius:5px;
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+  background:white;
+}
+#eraserButton:hover {
+  width:40px;
+  height:40px;
+  margin:10px;
+}
+#colorButton:hover {
+  transition: .1s linear;
+  width:45px;
+  height:45px;
+  margin:2.5px;
+}
+
+.black {
+  background:black;
+}
+.blue {
+  background:blue;
+}
+.red {
+  background:red;
+}
+.green {
+  background:green;
+}
+.yellow {
+  background:yellow;
+}
+.purple {
+  background:purple;
+}
+.grey {
+  background:grey;
+}
