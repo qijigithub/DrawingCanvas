@@ -1,5 +1,5 @@
 
-import React ,{useState,useEffect,useRef} from 'react';
+import React from 'react';
 import './App.css';
 export const App= ()=>{
 
@@ -43,9 +43,9 @@ export const App= ()=>{
       ctx.lineCap = "round";
    
       // ctx.lineTo(e.clientX, e.clientY);
-      if (e.type == 'touchmove'){
+      if (e.type === 'touchmove'){
         ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
-      } else if (e.type == 'mousemove'){
+      } else if (e.type === 'mousemove'){
         ctx.lineTo(e.clientX, e.clientY);
       }
         
@@ -55,9 +55,9 @@ export const App= ()=>{
       ctx.beginPath();
       
       // ctx.moveTo(e.clientX, e.clientY);
-      if (e.type == 'touchmove'){
+      if (e.type === 'touchmove'){
         ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY);
-      } else if (e.type == 'mousemove'){
+      } else if (e.type === 'mousemove'){
         ctx.moveTo(e.clientX, e.clientY);
       }
     }
