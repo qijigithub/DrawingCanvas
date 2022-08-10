@@ -5,7 +5,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "start_url":  "/drawingcanvas/",
+  "start_url":  "/",
   "orientation": "any",
   "prefer_related_applications": false,
   "icons": [
