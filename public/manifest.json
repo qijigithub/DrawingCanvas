@@ -5,13 +5,15 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/drawingcanvas/",
+  "start_url":  "/",
+  "orientation": "any",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "maskable.png",
       "type": "image/png",
       "sizes": "640x640",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "logo192.png",
