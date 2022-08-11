@@ -68,32 +68,3 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
-
-// Any other custom service worker logic can go here.
-var cacheName = 'helloWorld'
-
-// install 事件发生在浏览器安装并注册 Service Worker 时
-// 这是把后面阶段可能会用到的资源添加到缓存中的绝佳时间
-self.addEventListener('install', event => {
-  // event.waitUntil() 方法返回一个 Promise 对象
-  event.waitUntil(
-    caches.open(cacheName) // 使用指定的缓存名称来打开缓存
-    .then(cache => cache.addAll([ // addAll() 方法传入一个文件数组
-      './js/script.js',
-      './images/hello.png'
-    ]))
-  )
-})
-
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request) // 检查传入的请求 URL 是否匹配当前缓存中存在的任何内容
-    .then(function(response) {
-      if (response) { // 如果有 response 并且它不是未定义的或空的，就将它返回
-        return response
-      }
-      // 否则，通过网络读取预期的资源
-      return fetch(event.request)
-    })
-  )
-})
