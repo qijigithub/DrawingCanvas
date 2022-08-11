@@ -23,6 +23,7 @@ export function register(config) {
     // process.env.NODE_ENV === 'production' && 
   'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
+    console.log('serviceWorker register')
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
@@ -48,6 +49,7 @@ export function register(config) {
         });
       } else {
         // Is not localhost. Just register service worker
+        console.log('serviceWorker registerValidSW')
         registerValidSW(swUrl, config);
       }
     });
@@ -55,6 +57,7 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  console.log('regist')
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
@@ -69,6 +72,7 @@ function registerValidSW(swUrl, config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
+              console.log('installed work')
               console.log(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'
