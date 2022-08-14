@@ -10,57 +10,82 @@ export const App= ()=>{
 
   /// assuming canvas variable exists in global scope
   // const PureCanvas = React.forwardRef((props, ref) => <canvas ref={ref} />);
-  function setCanvasElementSize () {
-    // Also define the gap we want at the edges:
-const edgeMargin = 10
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const canvasAspectRatio = windowWidth / windowHeight;
+//   function setCanvasElementSize () {
+//     // Also define the gap we want at the edges:
+// const edgeMargin = 10
+//     const canvas = document.querySelector("#canvas");
+//     const ctx = canvas.getContext("2d");
+//     const windowWidth = window.innerWidth;
+//     const windowHeight = window.innerHeight;
+//     const canvasAspectRatio = windowWidth / windowHeight;
   
-    // Work out the orientation of the device.
-    const isPortrait = window.innerHeight > window.innerWidth;
-    console.log('window width* heing', window.innerWidth, window.innerHeight, 'isPortrait' ,isPortrait)
-    if (isPortrait) {
+//     // Work out the orientation of the device.
+//     const isPortrait = window.innerHeight > window.innerWidth;
+//     console.log('window width* heing', window.innerWidth, window.innerHeight, 'isPortrait' ,isPortrait)
+//     if (isPortrait) {
     
-      // We want to constrain the canvas by its width
-      ctx.canvas.width  = windowWidth - (2 * edgeMargin);
-      // The height depends on the width to ensure we don't stretch pixels
-      // on the canvas.
-      ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
-      // ctx.canvas.width =  windowWidth - (2 * edgeMargin);
-      // ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
-    } else {
-      // constrain by height
-      // canvas.style.height = windowHeight - (2 * edgeMargin);
-      // canvas.style.width = canvas.style.height * canvasAspectRatio;
-      ctx.canvas.height = windowHeight - (2 * edgeMargin);
-      ctx.canvas.width = ctx.canvas.height * canvasAspectRatio;
-    }
-  }
+//       // We want to constrain the canvas by its width
+//       ctx.canvas.width  = windowWidth - (2 * edgeMargin);
+//       // The height depends on the width to ensure we don't stretch pixels
+//       // on the canvas.
+//       ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
+//       // ctx.canvas.width =  windowWidth - (2 * edgeMargin);
+//       // ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
+//     } else {
+//       // constrain by height
+//       // canvas.style.height = windowHeight - (2 * edgeMargin);
+//       // canvas.style.width = canvas.style.height * canvasAspectRatio;
+//       ctx.canvas.height = windowHeight - (2 * edgeMargin);
+//       ctx.canvas.width = ctx.canvas.height * canvasAspectRatio;
+//     }
+//   }
   
   // Call the function once initially to size the canvas
   
-  React.useEffect(() => {
-    // window.screen.orientation.lock('landscape');
-    // const ctx = canvasRef.current.getContext("2d");
+  // React.useEffect(() => {
+  //   // window.screen.orientation.lock('landscape');
+  //   // const ctx = canvasRef.current.getContext("2d");
+  //   const canvas = document.querySelector("#canvas");
+  //   const ctx = canvas.getContext("2d");
+  //   // requestAnimationFrame(() => draw(ctx));
+
+    // const handleResize = e => {
+    //   ctx.canvas.height = window.innerHeight;
+    //   ctx.canvas.width = window.innerWidth;
+    // }
+
+  //   setCanvasElementSize();
+  //   window.addEventListener("resize",   setCanvasElementSize);
+
+  //   return () => window.removeEventListener("resize",   setCanvasElementSize);
+    
+  // }, []);
+  // const canvas = document.querySelector("#canvas");
+  // const ctx = canvas.getContext("2d");
+
+  function redraw() {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
-    // requestAnimationFrame(() => draw(ctx));
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = '5';
+    ctx.strokeRect(0, 0, window.innerWidth, window.innerHeight);
+  }
 
-    const handleResize = e => {
-      ctx.canvas.height = window.innerHeight;
-      ctx.canvas.width = window.innerWidth;
-    };
+  function resizeCanvas() {
+     const canvas = document.querySelector("#canvas");
+  const ctx = canvas.getContext("2d");
 
-    setCanvasElementSize();
-    window.addEventListener("resize",   setCanvasElementSize);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    redraw();
+  }
 
-    return () => window.removeEventListener("resize",   setCanvasElementSize);
-    
+
+  React.useEffect(() => {
+    window.addEventListener('resize', resizeCanvas, false);
+    // Draw canvas border for the first time.
+    // resizeCanvas();
   }, []);
-
   function changeColorAndSize(data, width) {
     color = data;
     strokeSize = width;
@@ -68,14 +93,14 @@ const edgeMargin = 10
   window.addEventListener("load", () => {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
-  
     //resizing
-    // canvas.height = window.innerHeight;
-    // canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
     // ctx.canvas.width =window.innerWidth;;
     // ctx.canvas.height = window.innerHeight;
-    setCanvasElementSize();
+    // setCanvasElementSize();
     // handleResize(e)
+    redraw()
     //variables
     let painting = false;
   
@@ -142,7 +167,8 @@ const edgeMargin = 10
     <div id="eraserButton" onClick={()=>changeColorAndSize('white',100)}></div>
   </div>
   {/* <PureCanvas id="canvas" ref={canvasRef} /> */}
-  <canvas id="canvas"></canvas>
+  {/* <canvas id="canvas"></canvas> */}
+  <canvas id='canvas' style={{position:'fixed', left:'0px', top:'0px'}}></canvas>
     </div>
   );
 

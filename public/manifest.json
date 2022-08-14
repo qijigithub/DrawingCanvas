@@ -7,7 +7,7 @@
   "scope": "/drawingcanvas/",
   "start_url":  "/drawingcanvas/",
   "id": "/drawingcanvas/",
-  "orientation": "portrait",
+  "orientation": "any",
   "prefer_related_applications": false,
   "icons": [
     {
