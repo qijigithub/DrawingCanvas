@@ -6,9 +6,10 @@ export const App= ()=>{
 
   let color;
   let strokeSize;
+  // const canvasRef = React.useRef();
 
   /// assuming canvas variable exists in global scope
-  
+  // const PureCanvas = React.forwardRef((props, ref) => <canvas ref={ref} />);
   React.useEffect(() => {
     // const ctx = canvasRef.current.getContext("2d");
     const canvas = document.querySelector("#canvas");
@@ -35,9 +36,11 @@ export const App= ()=>{
     const ctx = canvas.getContext("2d");
   
     //resizing
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-  
+    // canvas.height = window.innerHeight;
+    // canvas.width = window.innerWidth;
+    ctx.canvas.width = window.innerWidth;;
+    ctx.canvas.height = window.innerHeight;
+    // handleResize(e)
     //variables
     let painting = false;
   
@@ -103,7 +106,7 @@ export const App= ()=>{
     <div id="colorButton" className="grey" onClick={()=>changeColorAndSize('grey',5)}></div>
     <div id="eraserButton" onClick={()=>changeColorAndSize('white',100)}></div>
   </div>
-  
+  {/* <PureCanvas id="canvas" ref={canvasRef} /> */}
   <canvas id="canvas"></canvas>
     </div>
   );
