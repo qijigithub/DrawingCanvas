@@ -6,7 +6,26 @@ export const App= ()=>{
 
   let color;
   let strokeSize;
+
+  /// assuming canvas variable exists in global scope
   
+  React.useEffect(() => {
+    // const ctx = canvasRef.current.getContext("2d");
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    // requestAnimationFrame(() => draw(ctx));
+
+    const handleResize = e => {
+      ctx.canvas.height = window.innerHeight;
+      ctx.canvas.width = window.innerWidth;
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   function changeColorAndSize(data, width) {
     color = data;
     strokeSize = width;
