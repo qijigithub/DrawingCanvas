@@ -8,20 +8,23 @@ export const App= ()=>{
   let strokeSize;
   // const canvasRef = React.useRef();
 
-  /// assuming canvas variable exists in global scope
-  // const PureCanvas = React.forwardRef((props, ref) => <canvas ref={ref} />);
 
-  function draw(ctx) {
-    const canvas = ctx.canvas;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // ctx.fillStyle = "salmon";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
-    // ctx.font = "50px sans-serif";
-    // ctx.fillText("Resize Me!", canvas.width / 2 - 100, canvas.height / 2, 200);
-  
-    requestAnimationFrame(() => draw(ctx));
+  const isLandscape = () => window.matchMedia('(orientation:landscape)').matches,
+  [orientation, setOrientation] = React.useState(isLandscape() ? 'landscape' : 'portrait'),
+  onWindowResize = () => {              
+    clearTimeout(window.resizeLag)
+    window.resizeLag = setTimeout(() => {
+      delete window.resizeLag                       
+      setOrientation(isLandscape() ? 'landscape' : 'portrait')
+    }, 200)
   }
+
+// React.useEffect(() => (
+// onWindowResize(),
+// window.addEventListener('resize', onWindowResize),
+// () => window.removeEventListener('resize', onWindowResize)
+// ),[])
+
   React.useEffect(() => {
     // const ctx = canvasRef.current.getContext("2d");
     const canvas = document.querySelector("#canvas");
@@ -29,14 +32,15 @@ export const App= ()=>{
     // requestAnimationFrame(() => draw(ctx));
 
     const handleResize = e => {
+      onWindowResize()
+      if(orientation === 'portrait'){
       ctx.canvas.height = window.innerHeight;
       ctx.canvas.width = window.innerWidth;
-      ctx.fillStyle = "white";
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      } else {
+        ctx.canvas.height =  window.innerWidth;
+        ctx.canvas.width = window.innerHeight;
+      }
     };
-
-    
 
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -55,10 +59,8 @@ export const App= ()=>{
     //resizing
     // canvas.height = window.innerHeight;
     // canvas.width = window.innerWidth;
-    ctx.canvas.width = window.innerWidth;;
+    ctx.canvas.width =window.innerWidth;;
     ctx.canvas.height = window.innerHeight;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
     // handleResize(e)
     //variables
     let painting = false;
