@@ -10,6 +10,18 @@ export const App= ()=>{
 
   /// assuming canvas variable exists in global scope
   // const PureCanvas = React.forwardRef((props, ref) => <canvas ref={ref} />);
+
+  function draw(ctx) {
+    const canvas = ctx.canvas;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.fillStyle = "salmon";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    // ctx.font = "50px sans-serif";
+    // ctx.fillText("Resize Me!", canvas.width / 2 - 100, canvas.height / 2, 200);
+  
+    requestAnimationFrame(() => draw(ctx));
+  }
   React.useEffect(() => {
     // const ctx = canvasRef.current.getContext("2d");
     const canvas = document.querySelector("#canvas");
@@ -19,7 +31,12 @@ export const App= ()=>{
     const handleResize = e => {
       ctx.canvas.height = window.innerHeight;
       ctx.canvas.width = window.innerWidth;
+      ctx.fillStyle = "white";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
+
+    
 
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -40,6 +57,8 @@ export const App= ()=>{
     // canvas.width = window.innerWidth;
     ctx.canvas.width = window.innerWidth;;
     ctx.canvas.height = window.innerHeight;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     // handleResize(e)
     //variables
     let painting = false;
