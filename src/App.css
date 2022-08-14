@@ -43,7 +43,7 @@ body{
   padding:0;
 }
 #canvas{
-  position:fixed; /* or absolute (or not..) depending on your goal */
+  position:fixed;  /*or absolute (or not..) depending on your goal*/
   left:0;
   top:0;
   overflow: hidden;

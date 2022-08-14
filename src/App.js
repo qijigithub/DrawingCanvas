@@ -29,8 +29,8 @@ const edgeMargin = 10
       // The height depends on the width to ensure we don't stretch pixels
       // on the canvas.
       ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
-      ctx.canvas.width =  windowWidth - (2 * edgeMargin);
-      ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
+      // ctx.canvas.width =  windowWidth - (2 * edgeMargin);
+      // ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
     } else {
       // constrain by height
       // canvas.style.height = windowHeight - (2 * edgeMargin);
@@ -43,6 +43,7 @@ const edgeMargin = 10
   // Call the function once initially to size the canvas
   
   React.useEffect(() => {
+    window.screen.orientation.lock('landscape');
     // const ctx = canvasRef.current.getContext("2d");
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
@@ -57,6 +58,7 @@ const edgeMargin = 10
     window.addEventListener("resize",   setCanvasElementSize);
 
     return () => window.removeEventListener("resize",   setCanvasElementSize);
+    
   }, []);
 
   function changeColorAndSize(data, width) {
@@ -70,8 +72,9 @@ const edgeMargin = 10
     //resizing
     // canvas.height = window.innerHeight;
     // canvas.width = window.innerWidth;
-    ctx.canvas.width =window.innerWidth;;
-    ctx.canvas.height = window.innerHeight;
+    // ctx.canvas.width =window.innerWidth;;
+    // ctx.canvas.height = window.innerHeight;
+    setCanvasElementSize();
     // handleResize(e)
     //variables
     let painting = false;
