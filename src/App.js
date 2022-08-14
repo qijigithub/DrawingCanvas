@@ -43,7 +43,7 @@ const edgeMargin = 10
   // Call the function once initially to size the canvas
   
   React.useEffect(() => {
-    window.screen.orientation.lock('landscape');
+    // window.screen.orientation.lock('landscape');
     // const ctx = canvasRef.current.getContext("2d");
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
