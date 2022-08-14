@@ -8,23 +8,40 @@ export const App= ()=>{
   let strokeSize;
   // const canvasRef = React.useRef();
 
-
-  const isLandscape = () => window.matchMedia('(orientation:landscape)').matches,
-  [orientation, setOrientation] = React.useState(isLandscape() ? 'landscape' : 'portrait'),
-  onWindowResize = () => {              
-    clearTimeout(window.resizeLag)
-    window.resizeLag = setTimeout(() => {
-      delete window.resizeLag                       
-      setOrientation(isLandscape() ? 'landscape' : 'portrait')
-    }, 200)
+  /// assuming canvas variable exists in global scope
+  // const PureCanvas = React.forwardRef((props, ref) => <canvas ref={ref} />);
+  function setCanvasElementSize () {
+    // Also define the gap we want at the edges:
+const edgeMargin = 10
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const canvasAspectRatio = windowWidth / windowHeight;
+  
+    // Work out the orientation of the device.
+    const isPortrait = window.innerHeight > window.innerWidth;
+    console.log('window width* heing', window.innerWidth, window.innerHeight, 'isPortrait' ,isPortrait)
+    if (isPortrait) {
+    
+      // We want to constrain the canvas by its width
+      ctx.canvas.width  = windowWidth - (2 * edgeMargin);
+      // The height depends on the width to ensure we don't stretch pixels
+      // on the canvas.
+      ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
+      ctx.canvas.width =  windowWidth - (2 * edgeMargin);
+      ctx.canvas.height = ctx.canvas.width / canvasAspectRatio;
+    } else {
+      // constrain by height
+      // canvas.style.height = windowHeight - (2 * edgeMargin);
+      // canvas.style.width = canvas.style.height * canvasAspectRatio;
+      ctx.canvas.height = windowHeight - (2 * edgeMargin);
+      ctx.canvas.width = ctx.canvas.height * canvasAspectRatio;
+    }
   }
-
-// React.useEffect(() => (
-// onWindowResize(),
-// window.addEventListener('resize', onWindowResize),
-// () => window.removeEventListener('resize', onWindowResize)
-// ),[])
-
+  
+  // Call the function once initially to size the canvas
+  
   React.useEffect(() => {
     // const ctx = canvasRef.current.getContext("2d");
     const canvas = document.querySelector("#canvas");
@@ -32,20 +49,14 @@ export const App= ()=>{
     // requestAnimationFrame(() => draw(ctx));
 
     const handleResize = e => {
-      onWindowResize()
-      if(orientation === 'portrait'){
       ctx.canvas.height = window.innerHeight;
       ctx.canvas.width = window.innerWidth;
-      } else {
-        ctx.canvas.height =  window.innerWidth;
-        ctx.canvas.width = window.innerHeight;
-      }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    setCanvasElementSize();
+    window.addEventListener("resize",   setCanvasElementSize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize",   setCanvasElementSize);
   }, []);
 
   function changeColorAndSize(data, width) {
