@@ -10,6 +10,7 @@ export const App= ()=>{
     height: window.innerHeight,
     width: window.innerWidth
   })
+  const [isPortrait, setIsPortrait] =React.useState(true)
   React.useEffect(() => {
     function handleResize() {
       setDimensions({
@@ -18,9 +19,18 @@ export const App= ()=>{
       })
     
 }
-
     window.addEventListener('resize', handleResize)
   })
+
+  window.onorientationchange = (event) => {
+    const angle = event.target.screen.orientation.angle/90
+    if( angle % 2  === 0) {
+      setIsPortrait(true)
+    } else {
+      setIsPortrait(false)
+    }
+    console.log(`the orientation of the device is now ${event.target.screen.orientation.angle}, is portrait:${event.target.screen.orientation.angle/90}`);
+  };
   // const canvasRef = React.useRef();
 
   /// assuming canvas variable exists in global scope
@@ -35,7 +45,7 @@ const edgeMargin = 10
     const canvasAspectRatio = windowWidth / windowHeight;
   
     // Work out the orientation of the device.
-    const isPortrait = window.innerHeight > window.innerWidth;
+    // const isPortrait = window.innerHeight > window.innerWidth;
     console.log('window width* heing', window.innerWidth, window.innerHeight, 'isPortrait' ,isPortrait)
     if (isPortrait) {
     
@@ -184,7 +194,7 @@ const edgeMargin = 10
   {/* <PureCanvas id="canvas" ref={canvasRef} /> */}
   {/* <canvas id="canvas"></canvas> */}
   <h1>{`window width* height', ${window.innerWidth}, ${window.innerHeight}`}</h1>
-  <h1>{`'isPortrait' ,${window.innerHeight > window.innerWidth}`}</h1>
+  <h1>{`'isPortrait' ,${isPortrait}`}</h1>
   <div>Rendered at {dimensions.width} x {dimensions.height}</div>
   <canvas id='canvas' style={{position:'fixed', left:'0px', top:'0px'}}></canvas>
     </div>
