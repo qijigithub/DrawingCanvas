@@ -87,9 +87,9 @@ React.useEffect(()=>{
 //////////////////
 
 return (
-  <>
+  <div className="App">
   <div ref={containerRef}>
-  <Canvas onDraw={onDrawing} onStart={startDrawing} onStop={endDrawing} onEnd={onExit} height={height} width={width}/>
+  <Canvas id="canvas" onDraw={onDrawing} onStart={startDrawing} onStop={endDrawing} onEnd={onExit} height={height} width={width}/>
   </div>
   <div id="colorButtonBox">
   <div id="colorButton" className="black" onClick={selectPencil}></div>
@@ -103,7 +103,7 @@ return (
     {/* <button onClick={selectPencil}>pencil</button>
     <button onClick={selectEraser}>eraser</button> */}
   </div>
-  </>
+  </div>
 )
 
 
