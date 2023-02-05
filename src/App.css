@@ -42,14 +42,14 @@ body{
   margin:0;
   padding:0;
   overflow: hidden;
-  border: 2px solid rgb(131, 117, 183);
+  border: 2px solid rgb(172, 183, 117);
 }
 #canvas{
   position:fixed;  /*or absolute (or not..) depending on your goal*/
   left:0;
   top:0;
   overflow: hidden;
-  border: 3px solid rgb(2, 170, 100);
+  border: 3px solid rgb(2, 58, 170);
 }
 #colorButtonBox{
   position:absolute;

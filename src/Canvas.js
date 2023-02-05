@@ -14,8 +14,8 @@ if(!canvas) {
 }
 canvas.height = height;
 canvas.width = width;
-canvas.style.width = "100%"
-canvas.style.height = "100%"
+canvas.style.width = "100vw"
+canvas.style.height = "100vh"
 }, [width,height])
 
 const startDrawing = ({nativeEvent}) => {
