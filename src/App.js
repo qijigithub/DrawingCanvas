@@ -9,8 +9,8 @@ export const App= ()=>{
 //////////////////
 const [drawing, setDrawing] = React.useState(false)
 const [pencil, setPencil] = React.useState(0)
-const [height, setHeight] = React.useState(iOS ? window.screen.height : window.innerHeight)
-const [width, setWidth] = React.useState(iOS ? window.screen.width : window.innerWidth)
+const [height, setHeight] = React.useState(window.innerHeight)
+const [width, setWidth] = React.useState(window.innerWidth)
 const containerRef =React.useRef(null)
 
 const onDrawing = (context, sx, sy, cx, cy) => {
@@ -77,8 +77,8 @@ const selectColor = (number) => {
 
 React.useEffect(()=>{
   window.addEventListener('resize', (event)=> {
-    setWidth(iOS ? window.screen.width : window.innerWidth)
-    setHeight(iOS ? window.screen.height : window.innerHeight)
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
     })
     return ()=> {
       window.removeEventListener('resize',()=>{})

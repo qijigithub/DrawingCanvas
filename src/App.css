@@ -42,7 +42,7 @@ body{
   margin:0;
   padding:0;
   overflow: hidden;
-  border: 3px solid rgb(170, 2, 136);
+  border: 2px solid rgb(2, 170, 58);
 }
 #canvas{
   position:fixed;  /*or absolute (or not..) depending on your goal*/
