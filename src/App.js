@@ -52,7 +52,7 @@ const onDrawing = (context, sx, sy, cx, cy) => {
       case 6: context.strokeStyle = 'purple';break;
       case 7: context.strokeStyle = 'grey';break;
     }
-    context.lineWidth = 5
+    context.lineWidth = 3
     context.stroke();
   }
 }
@@ -88,7 +88,7 @@ React.useEffect(()=>{
 //////////////////
 
 return (
-  <>
+  <Container fixed>
   <div ref={containerRef}>
   <Canvas id="canvas" onDraw={onDrawing} onStart={startDrawing} onStop={endDrawing} onEnd={onExit} height={height} width={width}/>
   </div>
@@ -104,7 +104,7 @@ return (
     {/* <button onClick={selectPencil}>pencil</button>
     <button onClick={selectEraser}>eraser</button> */}
   </div>
-  </>
+  </Container>
 )
 
 
