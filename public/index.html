@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=0, shrink-to-fit=no" />
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
@@ -42,17 +42,6 @@
           console.log('ServiceWorekr registration failed: ', err)
         })
       }  
-        const info = document.getElementById('info');
-        let pause = 10000; //number of ms to wait before read innerHTML again
-        
-        info.innerHTML = "innerWidth1:"+window.innerWidth;  // initial innerwidth before orientation change
-
-        window.addEventListener('orientationchange', function() {
-            info.style.color = 'red';
-            info.innerHTML = "innerWidth on orientation change before pause:"+window.innerWidth;
-            setTimeout(function() {info.style.color = 'blue';
-                info.innerHTML = "innerWidth after orientation change and a pause of: " + pause + 'ms ' + window.innerWidth}, pause);  // innerwidth after orientation change
-               });
 
     </script>
   

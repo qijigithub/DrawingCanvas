@@ -51,6 +51,7 @@ const onDrawing = (context, sx, sy, cx, cy) => {
       case 6: context.strokeStyle = 'purple';break;
       case 7: context.strokeStyle = 'grey';break;
     }
+    context.lineWidth = 5
     context.stroke();
   }
 }
