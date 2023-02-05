@@ -72,6 +72,7 @@ const canvasLeave = () => {
     onTouchStart={startDrawing}
     onTouchEnd={finishDrawing}
     onTouchMove={draw}
+    style={{border: '3px solid yellow'}}
     className={className}></canvas>
   )
 }

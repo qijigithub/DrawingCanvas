@@ -4,12 +4,12 @@ import './App.css';
 import Canvas from './Canvas';
 export const App= ()=>{
 
-
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; 
 //////////////////
 const [drawing, setDrawing] = React.useState(false)
 const [pencil, setPencil] = React.useState(0)
-const [height, setHeight] = React.useState(window.innerHeight)
-const [width, setWidth] = React.useState(window.innerWidth)
+const [height, setHeight] = React.useState(iOS ? screen.height : window.innerHeight)
+const [width, setWidth] = React.useState(iOS ? screen.width : window.innerWidth)
 const containerRef =React.useRef(null)
 
 const onDrawing = (context, sx, sy, cx, cy) => {
@@ -51,7 +51,6 @@ const onDrawing = (context, sx, sy, cx, cy) => {
       case 6: context.strokeStyle = 'purple';break;
       case 7: context.strokeStyle = 'grey';break;
     }
-    context.lineWidth = 5
     context.stroke();
   }
 }
@@ -76,8 +75,8 @@ const selectColor = (number) => {
 
 React.useEffect(()=>{
   window.addEventListener('resize', (event)=> {
-    setWidth(window.innerWidth)
-    setHeight(window.innerHeight)
+    setWidth(c)
+    setHeight(iOS ? screen.height : window.innerHeight)
     })
     return ()=> {
       window.removeEventListener('resize',()=>{})
