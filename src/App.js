@@ -78,7 +78,7 @@ const selectColor = (number) => {
 React.useEffect(()=>{
   window.addEventListener('resize', (event)=> {
     setWidth(window.innerWidth)
-    setHeight(window.innerHeight)
+    setHeight(window.innerHeight/2)
     })
     return ()=> {
       window.removeEventListener('resize',()=>{})
