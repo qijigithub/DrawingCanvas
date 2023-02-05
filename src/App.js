@@ -88,7 +88,7 @@ React.useEffect(()=>{
 //////////////////
 
 return (
-  <Container maxWidth="lg" sx={{border: '1px solid green'}}>
+  <Container maxWidth="lg" sx={{border: '1px solid yellow'}}>
   <div ref={containerRef}>
   <Canvas id="canvas" onDraw={onDrawing} onStart={startDrawing} onStop={endDrawing} onEnd={onExit} height={height} width={width}/>
   </div>
