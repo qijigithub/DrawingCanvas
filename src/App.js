@@ -2,6 +2,7 @@
 import React from 'react';
 import './App.css';
 import Canvas from './Canvas';
+import Container from '@mui/material/Container';
 export const App= ()=>{
 
   var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; 
@@ -87,7 +88,7 @@ React.useEffect(()=>{
 //////////////////
 
 return (
-  <div className="App">
+  <Container maxWidth="lg" sx={{border: '1px solid green'}}>
   <div ref={containerRef}>
   <Canvas id="canvas" onDraw={onDrawing} onStart={startDrawing} onStop={endDrawing} onEnd={onExit} height={height} width={width}/>
   </div>
@@ -103,7 +104,7 @@ return (
     {/* <button onClick={selectPencil}>pencil</button>
     <button onClick={selectEraser}>eraser</button> */}
   </div>
-  </div>
+  </Container>
 )
 
 
